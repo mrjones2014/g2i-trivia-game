@@ -1,11 +1,11 @@
 .start-page {
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
 
-    > .ant-spin {
-        flex-grow: 1;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
+  > .ant-spin {
+    flex-grow: 1;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
 }

@@ -7,9 +7,9 @@ import { useEffect } from "react";
  * value and set a CSS variable --vh.
  */
 export default function useMobileSafariVhShim() {
-    const { height } = useWindowSize();
+  const { height } = useWindowSize();
 
-    useEffect(() => {
-        document.documentElement.style.setProperty("--vh", `${height * 0.01}px`);
-    }, [height]);
+  useEffect(() => {
+    document.documentElement.style.setProperty("--vh", `${height * 0.01}px`);
+  }, [height]);
 }

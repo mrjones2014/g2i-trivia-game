@@ -1,56 +1,56 @@
 @import "../../../sass/functions";
 
 .question {
-    &__card {
-        &.ant-card {
-            margin-bottom: 16px;
-        }
-
-        $baseClass: &;
-        &.-correct {
-            border-color: get-color-status("success");
-
-            .ant-card-head {
-                border-color: get-color-status("success");
-            }
-
-            #{$baseClass}__results .ant-typography {
-                color: get-color-status("success-dark");
-            }
-        }
-
-        &.-incorrect {
-            border-color: get-color-status("error");
-
-            .ant-card-head {
-                border-color: get-color-status("error");
-            }
-
-            #{$baseClass}__results .ant-typography {
-                color: get-color-status("error");
-            }
-        }
-
-        &__question-text {
-            .ant-typography {
-                font-size: 130%;
-            }
-        }
+  &__card {
+    &.ant-card {
+      margin-bottom: 16px;
     }
 
-    &__answer-buttons {
-        display: flex;
+    $baseClass: &;
+    &.-correct {
+      border-color: get-color-status("success");
 
-        button {
-            flex-grow: 1;
+      .ant-card-head {
+        border-color: get-color-status("success");
+      }
 
-            &:first-child {
-                margin-right: 8px;
-            }
-
-            &:last-child {
-                margin-left: 8px;
-            }
-        }
+      #{$baseClass}__results .ant-typography {
+        color: get-color-status("success-dark");
+      }
     }
+
+    &.-incorrect {
+      border-color: get-color-status("error");
+
+      .ant-card-head {
+        border-color: get-color-status("error");
+      }
+
+      #{$baseClass}__results .ant-typography {
+        color: get-color-status("error");
+      }
+    }
+
+    &__question-text {
+      .ant-typography {
+        font-size: 130%;
+      }
+    }
+  }
+
+  &__answer-buttons {
+    display: flex;
+
+    button {
+      flex-grow: 1;
+
+      &:first-child {
+        margin-right: 8px;
+      }
+
+      &:last-child {
+        margin-left: 8px;
+      }
+    }
+  }
 }

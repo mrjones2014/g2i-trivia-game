@@ -5,13 +5,13 @@
 * since vh doesn't work as expected on iOS Safari
 */
 @function vh($value) {
-    @return calc(var(--vh, 1vh) * #{$value});
+  @return calc(var(--vh, 1vh) * #{$value});
 }
 
 @function get-color($colorSet, $key) {
-    @return map-get(map-get($colors, $colorSet), $key);
+  @return map-get(map-get($colors, $colorSet), $key);
 }
 
 @function get-color-status($key) {
-    @return get-color("status", $key);
+  @return get-color("status", $key);
 }

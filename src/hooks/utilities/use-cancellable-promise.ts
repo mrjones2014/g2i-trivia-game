@@ -6,19 +6,19 @@ import { CancellablePromise, PromiseUtils } from "utilities/promise-utils";
  * which is automatically cancelled when the component is unmounted.
  */
 export default function useCancellablePromise<T>() {
-    const promises = useRef<Array<CancellablePromise<T>>>([]);
+  const promises = useRef<Array<CancellablePromise<T>>>([]);
 
-    // cancel all promises on unmount
-    useEffect(
-        () => promises.current.forEach((p: CancellablePromise<T>) => p.cancel()),
-        []
-    );
+  // cancel all promises on unmount
+  useEffect(
+    () => promises.current.forEach((p: CancellablePromise<T>) => p.cancel()),
+    []
+  );
 
-    function cancellablePromise(p: Promise<T>): Promise<T> {
-        const cancellable = PromiseUtils.makeCancellable(p);
-        promises.current.push(cancellable);
-        return cancellable.promise;
-    }
+  function cancellablePromise(p: Promise<T>): Promise<T> {
+    const cancellable = PromiseUtils.makeCancellable(p);
+    promises.current.push(cancellable);
+    return cancellable.promise;
+  }
 
-    return { cancellablePromise };
+  return { cancellablePromise };
 }

@@ -5,12 +5,12 @@ export type GameStateContextUpdater = Dispatch<SetStateAction<GameStateRecord>>;
 
 const defaultState = new GameStateRecord();
 const defaultUpdater: GameStateContextUpdater = () => {};
-export const GameStateContext = createContext<[GameStateRecord, GameStateContextUpdater]>(
-    [defaultState, defaultUpdater]
-);
+export const GameStateContext = createContext<
+  [GameStateRecord, GameStateContextUpdater]
+>([defaultState, defaultUpdater]);
 
 export default function useGameStateContext() {
-    const [gameState, setGameState] = useContext(GameStateContext);
+  const [gameState, setGameState] = useContext(GameStateContext);
 
-    return { gameState, setGameState };
+  return { gameState, setGameState };
 }

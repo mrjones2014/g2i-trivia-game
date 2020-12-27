@@ -11,20 +11,24 @@ import "./start-page.scss";
 const baseClassName = "start-page";
 
 export const StartPage: React.FC = () => {
-    const { questions, loading } = useQuestions();
-    const { gameState, setGameState } = useGameStateContext();
+  const { questions, loading } = useQuestions();
+  const { gameState, setGameState } = useGameStateContext();
 
-    useEffect(() => {
-        setGameState((prevState: GameStateRecord) => prevState.with({ questions }));
-    }, [setGameState, questions]);
+  useEffect(() => {
+    setGameState((prevState: GameStateRecord) => prevState.with({ questions }));
+  }, [setGameState, questions]);
 
-    if (loading || gameState.questions.size === 0) {
-        return (
-            <div className={baseClassName}>
-                <Spin tip="Loading questions..."/>
-            </div>
-        );
-    }
+  if (loading || gameState.questions.size === 0) {
+    return (
+      <div className={baseClassName}>
+        <Spin tip="Loading questions..." />
+      </div>
+    );
+  }
 
-    return <Redirect to={RouteUtils.getUrl(sitemap.game.question, { questionNum: 1 })}/>;
+  return (
+    <Redirect
+      to={RouteUtils.getUrl(sitemap.game.question, { questionNum: 1 })}
+    />
+  );
 };

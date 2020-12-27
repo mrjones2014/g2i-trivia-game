@@ -1,37 +1,43 @@
 import { Record } from "immutable";
 
 export interface Question {
-    category: string;
-    correctAnswer: boolean;
-    question: string;
-    userAnswer?: boolean;
+  category: string;
+  correctAnswer: boolean;
+  question: string;
+  userAnswer?: boolean;
 }
 
 const defaultValues: Question = {
-    category: "",
-    correctAnswer: true,
-    question: "",
-    userAnswer: undefined,
+  category: "",
+  correctAnswer: true,
+  question: "",
+  userAnswer: undefined,
 };
 
-export default class QuestionRecord extends Record(defaultValues) implements Question {
-    // Do not set properties on immutable records, babel and typescript transpilation issue causes runtime errors
-    // See https://github.com/facebook/create-react-app/issues/6506
+export default class QuestionRecord
+  extends Record(defaultValues)
+  implements Question {
+  // Do not set properties on immutable records, babel and typescript transpilation issue causes runtime errors
+  // See https://github.com/facebook/create-react-app/issues/6506
 
-    constructor(params?: Partial<Question>) {
-        params = Object.assign({}, defaultValues, params ?? {});
-        // convert strings from API to boolean types
-        if (params.correctAnswer != null && typeof params.correctAnswer === "string") {
-            params.correctAnswer = (params.correctAnswer as string).toLowerCase() === "true";
-        }
-        super(params);
+  constructor(params?: Partial<Question>) {
+    params = Object.assign({}, defaultValues, params ?? {});
+    // convert strings from API to boolean types
+    if (
+      params.correctAnswer != null &&
+      typeof params.correctAnswer === "string"
+    ) {
+      params.correctAnswer =
+        (params.correctAnswer as string).toLowerCase() === "true";
+    }
+    super(params);
+  }
+
+  public with(values?: Partial<Question>): QuestionRecord {
+    if (values == null) {
+      return new QuestionRecord(this.toJS());
     }
 
-    public with(values?: Partial<Question>): QuestionRecord {
-        if (values == null) {
-            return new QuestionRecord(this.toJS());
-        }
-
-        return new QuestionRecord(Object.assign(this.toJS(), values));
-    }
+    return new QuestionRecord(Object.assign(this.toJS(), values));
+  }
 }
