@@ -1,0 +1,33 @@
+@import "../../../sass/breakpoints";
+@import "~sass-mq";
+
+.results-page {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 60px;
+    height: 100%;
+
+    @include mq($from: tablet) {
+        padding: 0 60px;
+    }
+
+    @include mq($from: mobile, $until: tablet) {
+        padding: 0 8px;
+    }
+
+    .ant-typography > p {
+        margin: 0;
+    }
+
+    &__results-summary {
+        &.ant-card {
+            overflow-y: auto;
+            margin-bottom: 32px;
+        }
+    }
+
+    &__restart-button {
+        margin-bottom: 32px;
+    }
+}

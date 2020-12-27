@@ -6,31 +6,6 @@
       margin-bottom: 16px;
     }
 
-    $baseClass: &;
-    &.-correct {
-      border-color: get-color-status("success");
-
-      .ant-card-head {
-        border-color: get-color-status("success");
-      }
-
-      #{$baseClass}__results .ant-typography {
-        color: get-color-status("success-dark");
-      }
-    }
-
-    &.-incorrect {
-      border-color: get-color-status("error");
-
-      .ant-card-head {
-        border-color: get-color-status("error");
-      }
-
-      #{$baseClass}__results .ant-typography {
-        color: get-color-status("error");
-      }
-    }
-
     &__question-text {
       .ant-typography {
         font-size: 130%;

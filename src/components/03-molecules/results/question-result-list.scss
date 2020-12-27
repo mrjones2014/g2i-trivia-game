@@ -1,0 +1,54 @@
+@import "../../../sass/functions";
+@import "~sass-mq";
+
+.question-result-list {
+    &__card {
+        &.ant-card {
+            margin-bottom: 16px;
+        }
+
+        &__question {
+            display: flex;
+
+            &.-correct {
+                .anticon svg path {
+                    fill: get-color-status("success-dark");
+                }
+
+                div.ant-typography {
+                    color: get-color-status("success-dark");
+                }
+            }
+
+            &.-incorrect {
+                .anticon svg path {
+                    fill: get-color-status("error");
+                }
+
+                div.ant-typography {
+                    color: get-color-status("error");
+                }
+            }
+
+            .anticon svg {
+                width: 40px;
+                height: 40px;
+            }
+
+            &__summary {
+                flex-grow: 1;
+                padding: 0 16px;
+
+                @include mq($from: mobile, $until: tablet) {
+                    h2.ant-typography {
+                        font-size: 16px;
+                    }
+
+                    div.ant-typography {
+                        margin-bottom: 0.25em;
+                    }
+                }
+            }
+        }
+    }
+}

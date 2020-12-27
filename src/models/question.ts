@@ -33,6 +33,31 @@ export default class QuestionRecord
     super(params);
   }
 
+  /**
+   * Determine if the user answered the question correctly.
+   */
+  public isCorrect(): boolean {
+    return this.userAnswer === this.correctAnswer;
+  }
+
+  /**
+   * Determine if the user answere the question incorrectly.
+   */
+  public isWrong(): boolean {
+    return !this.isCorrect();
+  }
+
+  /**
+   * Determine if the user has answered the question.
+   */
+  public isAnswered(): boolean {
+    return this.userAnswer != null;
+  }
+
+  /**
+   * Return a new version of the record with some mutations applied.
+   * @param values new values to apply to the record
+   */
   public with(values?: Partial<Question>): QuestionRecord {
     if (values == null) {
       return new QuestionRecord(this.toJS());

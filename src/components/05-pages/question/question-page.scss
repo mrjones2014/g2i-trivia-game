@@ -4,18 +4,17 @@
   flex-direction: column;
   text-align: center;
   padding: 0 60px;
+  position: relative;
+
+  &__progress {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 32px;
+  }
 
   &__content {
     margin-top: auto;
     margin-bottom: auto;
-
-    &__next-question-button {
-      margin-top: 16px;
-      width: 100%;
-    }
-
-    .ant-progress {
-      margin-bottom: 32px;
-    }
   }
 }
