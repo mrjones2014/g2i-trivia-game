@@ -1,0 +1,7 @@
+/**
+* Utility function to use the --vh CSS variable fallback
+* since vh doesn't work as expected on iOS Safari
+*/
+@function vh($value) {
+    @return calc(var(--vh, 1vh) * #{$value});
+}
