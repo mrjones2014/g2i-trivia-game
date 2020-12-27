@@ -1,17 +1,20 @@
 import useCancellableListService from "hooks/utilities/use-cancellable-list-service";
 import { List } from "immutable";
 import QuestionRecord from "models/question";
-import { useEffect, useState } from "react";
-import QuestionService, { QuestionQueryParams } from "services/questions/question-service";
+import { useCallback, useEffect, useState } from "react";
+import QuestionService from "services/questions/question-service";
+import { EnvUtils } from "utilities/env-utils";
 
-export default function useQuestions(queryParams?: QuestionQueryParams) {
+export default function useQuestions(onError?: (error: any) => void) {
     const listQuestions = useCancellableListService(QuestionService.list());
 
     const [loading, setLoading] = useState(false);
     const [questions, setQuestions] = useState<List<QuestionRecord>>(List());
 
+    const handleError = useCallback((e: any) => onError?.(e), [onError]);
+
     useEffect(() => {
-        if (loading) {
+        if (loading || questions.size > 0) {
             return;
         }
 
@@ -21,10 +24,12 @@ export default function useQuestions(queryParams?: QuestionQueryParams) {
                 const result = await listQuestions();
                 setQuestions(result);
             } catch (e) {
-                // TODO handle error
+                handleError(e);
+                EnvUtils.logIfDevelopment(e, "error");
             }
+            setLoading(false);
         })();
-    }, [listQuestions, loading]);
+    }, [listQuestions, handleError, loading, questions]);
 
     return {
         loading,

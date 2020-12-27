@@ -5,7 +5,7 @@ export interface CancellablePromise<T> {
     cancel(): void;
 }
 
-export function makeCancellable<T>(promise: Promise<T>): CancellablePromise<T> {
+function makeCancellable<T>(promise: Promise<T>): CancellablePromise<T> {
     let isCancelled = false;
     const wrappedPromise = new Promise((resolve: PromiseResolve<T>, reject: PromiseReject) => {
         promise.then((value: T) => {
@@ -29,4 +29,8 @@ export function makeCancellable<T>(promise: Promise<T>): CancellablePromise<T> {
         promise: wrappedPromise,
         cancel: () => isCancelled = true,
     };
+};
+
+export const PromiseUtils = {
+    makeCancellable
 };

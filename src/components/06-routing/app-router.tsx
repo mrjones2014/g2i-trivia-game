@@ -10,7 +10,7 @@ export const AppRouter: React.FC = () => (
     <Router>
         <Switch>
             {routes.map((route: RouteDefinition) => (
-                <Route path={route.path}>
+                <Route path={route.path} key={route.path}>
                     <route.component/>
                 </Route>
             ))}

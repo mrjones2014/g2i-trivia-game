@@ -2,7 +2,7 @@ export const sitemap = {
     home: "/",
     game: {
         start: "/start",
-        question: "/question/:index",
+        question: "/question/:questionNum",
         results: "/results",
     },
 };

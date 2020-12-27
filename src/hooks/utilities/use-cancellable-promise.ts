@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { CancellablePromise, makeCancellable } from "utilities/promise-utils";
+import { CancellablePromise, PromiseUtils } from "utilities/promise-utils";
 
 /**
  * React hook to convert a promise to a cancellable promise
@@ -15,7 +15,7 @@ export default function useCancellablePromise<T>() {
     );
 
     function cancellablePromise(p: Promise<T>): Promise<T> {
-        const cancellable = makeCancellable(p);
+        const cancellable = PromiseUtils.makeCancellable(p);
         promises.current.push(cancellable);
         return cancellable.promise;
     }
