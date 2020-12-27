@@ -8,6 +8,7 @@ import { Question } from "components/03-molecules/question/question";
 import GameStateRecord from "models/game-state";
 import { RouteUtils } from "utilities/route-utils";
 import "./question-page.scss";
+import { Progress } from "antd";
 
 interface PathParams {
     questionNum: string;
@@ -34,22 +35,41 @@ export const QuestionPage: React.FC = () => {
         return <Redirect to={sitemap.home}/>
     }
 
+    console.log(gameState.questions.map(q => q.correctAnswer).toJS());
+    
+
     return (
         <div className={baseClassName}>
             <div className={`${baseClassName}__content`}>
+                <Progress
+                    percent={((questionIndex + 1) / gameState.questions.size) * 100}
+                    format={() => `${questionIndex + 1} / ${gameState.questions.size}`}
+                />
                 <Question
                     question={question}
                     onAnswer={handleAnswer}
                     questionNum={questionIndex + 1}
                 />
-                {question.userAnswer != null && (
-                    <Link
-                        to={RouteUtils.getUrl(sitemap.game.question, { questionNum: questionIndex + 2 })}
-                        className={`${baseClassName}__content__next-question-button ant-btn ant-btn-primary ant-btn-lg`}
-                    >
-                        Next Question
-                    </Link>
-                )}
+                {question.userAnswer != null &&
+                    <React.Fragment>
+                        {questionIndex < (gameState.questions.size - 1) && (
+                            <Link
+                                to={RouteUtils.getUrl(sitemap.game.question, { questionNum: questionIndex + 2 })}
+                                className={`${baseClassName}__content__next-question-button ant-btn ant-btn-primary ant-btn-lg`}
+                            >
+                                Next Question
+                            </Link>
+                        )}
+                        {questionIndex >= (gameState.questions.size - 1) && (
+                            <Link
+                                to={sitemap.game.results}
+                                className={`${baseClassName}__content__next-question-button ant-btn ant-btn-primary ant-btn-lg`}
+                            >
+                                Results
+                            </Link>
+                        )}
+                    </React.Fragment>
+                }
             </div>
         </div>
     );

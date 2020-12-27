@@ -1,6 +1,6 @@
 import { List } from "immutable";
 import qs from "qs";
-import { handleResponse } from "services/service-utils";
+import { handleResponse } from "utilities/service-utils";
 import { Constructor } from "utilities/constructor";
 
 export type ListService<TResultModel, TQueryParams> = (queryParams?: TQueryParams) => Promise<List<TResultModel>>;

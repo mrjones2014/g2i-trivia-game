@@ -1,5 +1,6 @@
 import { List } from "immutable";
 import { Constructor } from "utilities/constructor";
+import { ObjectUtils } from "utilities/object-utils";
 
 async function handleResponse<TResultModel>(response: Response, modelConstructor: Constructor<TResultModel>) {
     if (!response.ok) {
@@ -19,7 +20,7 @@ async function handleResponse<TResultModel>(response: Response, modelConstructor
 };
 
 function bindList<TResultModel>(results: Array<object>, modelConstructor: Constructor<TResultModel>): List<TResultModel> {
-    return List(results.map((item: object) => new modelConstructor(item)));
+    return List(results.map((item: object) => new modelConstructor(ObjectUtils.mapObjectKeysToCamelCase(item))));
 }
 
 export {

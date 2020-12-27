@@ -20,6 +20,10 @@ export default class QuestionRecord extends Record(defaultValues) implements Que
 
     constructor(params?: Partial<Question>) {
         params = Object.assign({}, defaultValues, params ?? {});
+        // convert strings from API to boolean types
+        if (params.correctAnswer != null && typeof params.correctAnswer === "string") {
+            params.correctAnswer = (params.correctAnswer as string).toLowerCase() === "true";
+        }
         super(params);
     }
 
