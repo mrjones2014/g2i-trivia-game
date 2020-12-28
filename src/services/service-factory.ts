@@ -1,7 +1,7 @@
 import { List } from "immutable";
 import qs from "qs";
-import { handleListResponse } from "utilities/service-utils";
-import { Constructor } from "utilities/constructor";
+import { Constructor } from "utilities/types/constructor";
+import { ServiceUtils } from "utilities/service-utils";
 
 export type ListService<TResultModel, TQueryParams> = (
   queryParams?: TQueryParams
@@ -30,7 +30,7 @@ export default class ServiceFactory {
       }
 
       const response = await fetch(url);
-      return handleListResponse(response, resultModelConstructor);
+      return ServiceUtils.handleListResponse(response, resultModelConstructor);
     };
   }
 }

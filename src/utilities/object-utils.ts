@@ -1,4 +1,4 @@
-import { StringIndexedObject } from "utilities/string-indexed-object";
+import { StringIndexedObject } from "utilities/types/string-indexed-object";
 import { StringUtils } from "utilities/string-utils";
 
 /**
@@ -18,7 +18,7 @@ const isObject = (subject: any): subject is object => {
  * to camelCase. Operates recursively on nested keys.
  * @param subject the subject to convert keys to camelCase
  */
-const mapObjectKeysToCamelCase = (subject: object): object => {
+const mapObjectKeysToCamelCase = (subject: any): object => {
   if (subject == null) {
     return subject;
   }
@@ -31,7 +31,7 @@ const mapObjectKeysToCamelCase = (subject: object): object => {
   const result: StringIndexedObject = {};
   Object.keys(subject).forEach(
     (key: string) =>
-      (result[StringUtils.snakeToCamelCase(key)] = mapObjectKeysToCamelCase(
+      (result[StringUtils.toCamelCase(key)] = mapObjectKeysToCamelCase(
         indexableSubject[key]
       ))
   );

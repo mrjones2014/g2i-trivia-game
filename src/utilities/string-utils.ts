@@ -15,15 +15,15 @@ const capitalize = (subject?: string): string => {
 };
 
 /**
- * Takes a string in snake_case and converts it to camelCase.
+ * Takes a string and converts it to camelCase.
  * @param subject the string to convert to camelCase
  */
-const snakeToCamelCase = (subject: string): string =>
+const toCamelCase = (subject: string): string =>
   subject.replace(/([-_][a-z])/gi, ($1) =>
     $1.toUpperCase().replace("-", "").replace("_", "")
   );
 
 export const StringUtils = {
   capitalize,
-  snakeToCamelCase,
+  toCamelCase,
 };

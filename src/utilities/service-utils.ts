@@ -1,5 +1,5 @@
 import { List } from "immutable";
-import { Constructor } from "utilities/constructor";
+import { Constructor } from "utilities/types/constructor";
 import { ObjectUtils } from "utilities/object-utils";
 
 /**
@@ -43,4 +43,7 @@ function bindList<TResultModel>(
   );
 }
 
-export { handleListResponse, bindList };
+export const ServiceUtils = {
+  handleListResponse,
+  bindList,
+};

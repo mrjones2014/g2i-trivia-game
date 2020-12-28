@@ -1,3 +1,6 @@
+import { EnvUtils } from "utilities/env-utils";
+import { StringIndexedObject } from "utilities/types/string-indexed-object";
+
 const _routeParamRegEx = /(:[a-z_-]*)/gi;
 
 /**
@@ -6,37 +9,24 @@ const _routeParamRegEx = /(:[a-z_-]*)/gi;
  * @param path the sitemap value for the route
  * @param pathParams the path params to interpolate into the sitemap string, if any
  */
-const getUrl = <TPathParams>(path: string, pathParams?: TPathParams) => {
-  if (path == null) {
-    return "#";
-  }
-
-  if (pathParams != null) {
-    path = replacePathParams(path, pathParams);
-  }
-
-  return path;
-};
-
-/**
- * Takes a path and interpolates variables, where applicable.
- * @param path the sitemap route with variables
- * @param pathParams the parameters to interpolate into the route
- */
-const replacePathParams = (path: string, pathParams: any) => {
-  if (pathParams == null || path == null) {
+const getUrl = <TPathParams>(
+  path: string,
+  pathParams?: TPathParams
+): string => {
+  if (pathParams == null) {
     return path;
   }
 
   return path.replace(_routeParamRegEx, (a, b) => {
-    const value = pathParams[b.substring(1)];
+    const value = (pathParams as StringIndexedObject)[b.substring(1)];
 
     if (value != null) {
       return value;
     }
 
-    console.error(
-      `routeUtils::getUrl cannot find value for path parameter ${a}`
+    EnvUtils.logIfDevelopment(
+      `routeUtils::getUrl cannot find value for path parameter ${a}`,
+      "warn"
     );
 
     return a;
@@ -45,5 +35,4 @@ const replacePathParams = (path: string, pathParams: any) => {
 
 export const RouteUtils = {
   getUrl,
-  replacePathParams,
 };
