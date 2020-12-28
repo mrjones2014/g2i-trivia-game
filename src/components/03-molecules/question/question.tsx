@@ -13,6 +13,10 @@ export interface QuestionProps {
 
 const baseClassName = "question";
 
+/**
+ * Render a question with a button for each answer (true or false)
+ * @param props
+ */
 export const Question: React.FC<QuestionProps> = (props: QuestionProps) => {
   const { question, onAnswer } = props;
 
@@ -20,21 +24,14 @@ export const Question: React.FC<QuestionProps> = (props: QuestionProps) => {
 
   return (
     <div className={baseClassName}>
-      <Card
-        title={question.category}
-        className={`${baseClassName}__card`}
-      >
+      <Card title={question.category} className={`${baseClassName}__card`}>
         <div className={`${baseClassName}__card__question-text`}>
           <Paragraph>{he.decode(question.question)}</Paragraph>
         </div>
       </Card>
       {question.userAnswer == null && (
         <div className={`${baseClassName}__answer-buttons`}>
-          <Button
-            size="large"
-            type="primary"
-            onClick={getAnswerHandler(true)}
-          >
+          <Button size="large" type="primary" onClick={getAnswerHandler(true)}>
             True
           </Button>
           <Button

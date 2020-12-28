@@ -5,6 +5,10 @@ import { useCallback, useEffect, useState } from "react";
 import QuestionService from "services/questions/question-service";
 import { EnvUtils } from "utilities/env-utils";
 
+/**
+ * Load questions from the API using default query parameters.
+ * @param onError a custom callback to handle API errors
+ */
 export default function useQuestions(onError?: (error: any) => void) {
   const listQuestions = useCancellableListService(QuestionService.list());
 

@@ -9,6 +9,10 @@ export interface RouteDefinition {
   component: React.ComponentType;
 }
 
+/**
+ * An array of all our application routes
+ * to keep them nice and tidy.
+ */
 export const routes: Array<RouteDefinition> = [
   {
     path: sitemap.game.start,

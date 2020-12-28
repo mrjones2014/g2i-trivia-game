@@ -5,6 +5,11 @@ export interface CancellablePromise<T> {
   cancel(): void;
 }
 
+/**
+ * Wrap a promise and make it cancellable. If a promise is cancelled,
+ * it will be rejected with the reason { isCancelled: true }
+ * @param promise the native promise to wrap
+ */
 function makeCancellable<T>(promise: Promise<T>): CancellablePromise<T> {
   let isCancelled = false;
   const wrappedPromise = new Promise(

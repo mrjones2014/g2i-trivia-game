@@ -16,6 +16,9 @@ interface PathParams {
 
 const baseClassName = "question-page";
 
+/**
+ * The page presenting each question to the user.
+ */
 export const QuestionPage: React.FC = () => {
   const history = useHistory();
   const { gameState, setGameState } = useGameStateContext();
@@ -23,6 +26,9 @@ export const QuestionPage: React.FC = () => {
   const { questionNum } = useParams<PathParams>();
   const questionIndex = (NumberUtils.parseInt(questionNum) ?? 0) - 1;
   const question = gameState.questions.get(questionIndex);
+
+  // convert 0-based index to 1-based "question number" for next question in sequence
+  const nextQuestionNum = questionIndex + 2;
 
   const handleAnswer = (userAnswer: boolean) => {
     setGameState((prevState: GameStateRecord) =>
@@ -39,10 +45,10 @@ export const QuestionPage: React.FC = () => {
       return;
     }
 
-    // convert 0-based index to 1-based "question number" for next question in sequence
-    const nextQuestionNum = questionIndex + 2;
-    history.push(RouteUtils.getUrl(sitemap.game.question, { questionNum: nextQuestionNum }));
-  }
+    history.push(
+      RouteUtils.getUrl(sitemap.game.question, { questionNum: nextQuestionNum })
+    );
+  };
 
   if (question == null) {
     EnvUtils.logIfDevelopment(
@@ -53,9 +59,9 @@ export const QuestionPage: React.FC = () => {
   }
 
   if (question.isAnswered()) {
-    // convert 0-based index to 1-based "question number" for next question in sequence
-    const nextQuestionNum = questionIndex + 2;
-    history.push(RouteUtils.getUrl(sitemap.game.question, { questionNum: nextQuestionNum }));
+    history.push(
+      RouteUtils.getUrl(sitemap.game.question, { questionNum: nextQuestionNum })
+    );
     return null;
   }
 
@@ -69,10 +75,7 @@ export const QuestionPage: React.FC = () => {
         />
       </div>
       <div className={`${baseClassName}__content`}>
-        <Question
-          question={question}
-          onAnswer={handleAnswer}
-        />
+        <Question question={question} onAnswer={handleAnswer} />
       </div>
     </div>
   );

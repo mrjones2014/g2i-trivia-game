@@ -14,6 +14,9 @@ const defaultValues: Question = {
   userAnswer: undefined,
 };
 
+/**
+ * Immutable record representing a question in the trivia game.
+ */
 export default class QuestionRecord
   extends Record(defaultValues)
   implements Question {

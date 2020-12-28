@@ -11,39 +11,46 @@ const { Title } = Typography;
 
 const baseClassName = "results-page";
 
+/**
+ * The final screen of the game, showing the user's
+ * results/score, with a button to start over.
+ */
 export const ResultsPage: React.FC = () => {
-    const history = useHistory();
-    const { gameState, setGameState } = useGameStateContext();
+  const history = useHistory();
+  const { gameState, setGameState } = useGameStateContext();
 
-    const resetGame = () => {
-        setGameState(new GameStateRecord());
-        history.push(sitemap.game.start);
-    };
+  const resetGame = () => {
+    setGameState(new GameStateRecord());
+    history.push(sitemap.game.start);
+  };
 
-    // if we haven't answered all questions, something is wrong
-    // with the game state (likely a page refresh); restart
-    if (gameState.numAnswered() !== gameState.questions.size || gameState.questions.isEmpty()) {
-        resetGame();
-        return null;
-    }
+  // if we haven't answered all questions, something is wrong
+  // with the game state (likely a page refresh); restart
+  if (
+    gameState.numAnswered() !== gameState.questions.size ||
+    gameState.questions.isEmpty()
+  ) {
+    resetGame();
+    return null;
+  }
 
-    return (
-        <div className={baseClassName}>
-            <Title>
-                You Scored
-                <p>{gameState.scoreString()}</p>
-            </Title>
-            <Card className={`${baseClassName}__results-summary`}>
-                <QuestionResultList questions={gameState.questions}/>
-            </Card>
-            <Button
-                type="primary"
-                onClick={resetGame}
-                size="large"
-                className={`${baseClassName}__restart-button`}
-            >
-                Play Again?
-            </Button>
-        </div>
-    );
+  return (
+    <div className={baseClassName}>
+      <Title>
+        You Scored
+        <p>{gameState.scoreString()}</p>
+      </Title>
+      <Card className={`${baseClassName}__results-summary`}>
+        <QuestionResultList questions={gameState.questions} />
+      </Card>
+      <Button
+        type="primary"
+        onClick={resetGame}
+        size="large"
+        className={`${baseClassName}__restart-button`}
+      >
+        Play Again?
+      </Button>
+    </div>
+  );
 };

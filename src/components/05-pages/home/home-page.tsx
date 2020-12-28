@@ -7,6 +7,9 @@ const { Title } = Typography;
 
 const baseClassName = "home-page";
 
+/**
+ * The main landing page for the application.
+ */
 export const HomePage: React.FC = () => {
   return (
     <div className={baseClassName}>

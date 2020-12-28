@@ -2,7 +2,11 @@
 
 /**
 * Utility function to use the --vh CSS variable fallback
-* since vh doesn't work as expected on iOS Safari
+* since vh doesn't work as expected on iOS Safari.
+* The --vh variable will only exist on Safari,
+* we're using browser feature detection to detect
+* Safari, so fallback to the normal vh unit if the
+* variable is not set.
 */
 @function vh($value) {
   @return calc(var(--vh, 1vh) * #{$value});

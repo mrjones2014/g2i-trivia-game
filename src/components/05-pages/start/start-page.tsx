@@ -10,6 +10,10 @@ import "./start-page.scss";
 
 const baseClassName = "start-page";
 
+/**
+ * Shim page to load the questions and show a loading
+ * indicator before redirecting to the first question page.
+ */
 export const StartPage: React.FC = () => {
   const { questions, loading } = useQuestions();
   const { gameState, setGameState } = useGameStateContext();

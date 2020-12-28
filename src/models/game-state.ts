@@ -9,9 +9,14 @@ const defaultValues: GameState = {
   questions: List(),
 };
 
+/**
+ * Immutable record representing the game state.
+ */
 export default class GameStateRecord
   extends Record(defaultValues)
   implements GameState {
+  // Do not set properties on immutable records, babel and typescript transpilation issue causes runtime errors
+  // See https://github.com/facebook/create-react-app/issues/6506
 
   constructor(params?: Partial<GameState>) {
     params = Object.assign({}, defaultValues, params ?? {});

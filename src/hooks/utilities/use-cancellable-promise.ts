@@ -2,8 +2,9 @@ import { useEffect, useRef } from "react";
 import { CancellablePromise, PromiseUtils } from "utilities/promise-utils";
 
 /**
- * React hook to convert a promise to a cancellable promise
- * which is automatically cancelled when the component is unmounted.
+ * Returns a function to wrap promises using useEffect
+ * such that promises are automatically cancelled
+ * when the requesting component is unmounted.
  */
 export default function useCancellablePromise<T>() {
   const promises = useRef<Array<CancellablePromise<T>>>([]);

@@ -2,7 +2,14 @@ import { List } from "immutable";
 import { Constructor } from "utilities/constructor";
 import { ObjectUtils } from "utilities/object-utils";
 
-async function handleResponse<TResultModel>(
+/**
+ * Take an HTTP Response object, check if for status code errors,
+ * and if no errors, maps the data using modelConstructor. If status code
+ * is not 2xx, the promise is rejected.
+ * @param response the HTTP Response object
+ * @param modelConstructor the model constructor to map the response data to
+ */
+async function handleListResponse<TResultModel>(
   response: Response,
   modelConstructor: Constructor<TResultModel>
 ) {
@@ -36,4 +43,4 @@ function bindList<TResultModel>(
   );
 }
 
-export { handleResponse, bindList };
+export { handleListResponse, bindList };

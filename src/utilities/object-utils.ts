@@ -1,20 +1,24 @@
 import { StringIndexedObject } from "utilities/string-indexed-object";
+import { StringUtils } from "utilities/string-utils";
 
-function toCamelCase(subject: string): string {
-  return subject.replace(/([-_][a-z])/gi, ($1) => {
-    return $1.toUpperCase().replace("-", "").replace("_", "");
-  });
-}
-
-function isObject(subject: any): boolean {
+/**
+ * Check if a subject of unknown type is an object.
+ * @param subject the subject to test
+ */
+const isObject = (subject: any): subject is object => {
   return (
     subject === Object(subject) &&
     !Array.isArray(subject) &&
     typeof subject !== "function"
   );
-}
+};
 
-function mapObjectKeysToCamelCase(subject: object): object {
+/**
+ * Take an object and convert its property keys
+ * to camelCase. Operates recursively on nested keys.
+ * @param subject the subject to convert keys to camelCase
+ */
+const mapObjectKeysToCamelCase = (subject: object): object => {
   if (subject == null) {
     return subject;
   }
@@ -27,13 +31,13 @@ function mapObjectKeysToCamelCase(subject: object): object {
   const result: StringIndexedObject = {};
   Object.keys(subject).forEach(
     (key: string) =>
-      (result[toCamelCase(key)] = mapObjectKeysToCamelCase(
+      (result[StringUtils.snakeToCamelCase(key)] = mapObjectKeysToCamelCase(
         indexableSubject[key]
       ))
   );
 
   return result;
-}
+};
 
 export const ObjectUtils = {
   isObject,
