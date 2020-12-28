@@ -2,6 +2,29 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project Structure
+See [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/).
+```
+src/
+├── components/ <-- organized according to Atomic Design
+│   ├── 01-particles/ <-- component Sass files go next to the component
+│   ├── 02-atoms/
+│   ├── 03-molecules/
+│   ├── 04-organisms/
+│   └── 05-pages/
+├── hooks/
+│   ├── context/   <-- custom hooks for using React contexts
+│   ├── domain/    <-- custom hooks related to the application domain
+│   └── utilities/ <-- custom hooks for general utilities
+├── models/  <-- app domain models/records
+├── sass/ <-- shared Sass code (mixins, functions, etc.)
+├── services/
+│   ├── questions/  <-- services go in a folder named after the domain object
+│   └── service-factory.ts
+└── utilities/
+    └── types/
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
