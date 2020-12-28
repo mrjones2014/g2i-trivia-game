@@ -1,4 +1,4 @@
-import { AppRouter } from "components/06-routing/app-router";
+import { AppRouter } from "components/03-molecules/router/app-router";
 import { GameStateContext } from "hooks/context/use-game-state-context";
 import useMobileSafariVhShim from "hooks/utilities/use-mobile-safari-vh-shim";
 import GameStateRecord from "models/game-state";

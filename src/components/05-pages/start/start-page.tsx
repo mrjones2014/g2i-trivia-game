@@ -1,6 +1,6 @@
 import { Spin } from "antd";
 import useGameStateContext from "hooks/context/use-game-state-context";
-import useQuestions from "hooks/domain/use-questions";
+import useQuestions from "hooks/domain/questions/use-questions";
 import GameStateRecord from "models/game-state";
 import React, { useEffect } from "react";
 import { Redirect } from "react-router-dom";
