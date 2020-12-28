@@ -1,9 +1,11 @@
-# Getting Started with Create React App
+# Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The first thing you should do is run `yarn configure:git`, which will install [Husky](https://github.com/typicode/husky) and configure the githooks specified in the Husky config.
 
 ## Project Structure
+
 See [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/).
+
 ```
 src/
 ├── components/ <-- organized according to Atomic Design
@@ -27,7 +29,14 @@ src/
 
 ## Available Scripts
 
-In the project directory, you can run:
+## `yarn format`
+
+Runs [Prettier](https://github.com/prettier/prettier) on modified files via [pretty-quick](https://github.com/azz/pretty-quick). This is also run automatically by a git pre-commit
+hook via [Husky](https://github.com/typicode/husky).
+
+## `yarn configure:git`
+
+Configures githooks via [Husky](https://github.com/typicode/husky).
 
 ### `yarn start`
 
