@@ -1,0 +1,28 @@
+import { SettingFilled } from "@ant-design/icons";
+import { Button } from "antd";
+import { DarkModePreferenceModal } from "components/03-molecules/preferences/dark-mode-preference-modal";
+import React, { useState } from "react";
+
+export const DarkModePreferencesButton: React.FC = () => {
+  const [showPreferenceModal, setShowPreferenceModal] = useState(false);
+
+  const openThemePrefs = () => setShowPreferenceModal(true);
+  const closeThemePrefs = () => setShowPreferenceModal(false);
+
+  return (
+    <React.Fragment>
+      <Button
+        type="primary"
+        size="large"
+        onClick={openThemePrefs}
+        className={`theme-button`}
+      >
+        <SettingFilled />
+      </Button>
+      <DarkModePreferenceModal
+        visible={showPreferenceModal}
+        onClose={closeThemePrefs}
+      />
+    </React.Fragment>
+  );
+};

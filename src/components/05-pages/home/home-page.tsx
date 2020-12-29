@@ -1,5 +1,7 @@
-import { Typography, Button } from "antd";
+import { Typography } from "antd";
+import { DarkModePreferencesButton } from "components/03-molecules/preferences/dark-mode-preferences-button";
 import React from "react";
+import { Link } from "react-router-dom";
 import { sitemap } from "sitemap";
 import "./home-page.scss";
 
@@ -18,9 +20,13 @@ export const HomePage: React.FC = () => {
         You will be presented with 10 True or False questions.
       </Title>
       <Title level={2}>Can you score 100%?</Title>
-      <Button type="primary" size="large" href={sitemap.game.start}>
+      <Link
+        className="ant-btn ant-btn-lg ant-btn-primary"
+        to={sitemap.game.start}
+      >
         Begin
-      </Button>
+      </Link>
+      <DarkModePreferencesButton />
     </div>
   );
 };

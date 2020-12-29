@@ -2,10 +2,10 @@ import useGameStateContext from "hooks/context/use-game-state-context";
 import { Button, Card, Typography } from "antd";
 import React from "react";
 import { QuestionResultList } from "components/03-molecules/results/question-result-list";
-import "./results-page.scss";
 import { useHistory } from "react-router-dom";
 import GameStateRecord from "models/game-state";
 import { sitemap } from "sitemap";
+import "./results-page.scss";
 
 const { Title } = Typography;
 
@@ -21,7 +21,7 @@ export const ResultsPage: React.FC = () => {
 
   const resetGame = () => {
     setGameState(new GameStateRecord());
-    history.push(sitemap.game.start);
+    history.push(sitemap.home);
   };
 
   // if we haven't answered all questions, something is wrong
