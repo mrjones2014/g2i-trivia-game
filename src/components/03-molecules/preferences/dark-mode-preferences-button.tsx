@@ -1,5 +1,5 @@
 import { SettingFilled } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
 import { DarkModePreferenceModal } from "components/03-molecules/preferences/dark-mode-preference-modal";
 import React, { useState } from "react";
 
@@ -18,14 +18,16 @@ export const DarkModePreferencesButton: React.FC<DarkModePreferencesButtonProps>
 
   return (
     <React.Fragment>
-      <Button
-        type="primary"
-        size="large"
-        onClick={openThemePrefs}
-        className={className}
-      >
-        <SettingFilled />
-      </Button>
+      <Tooltip placement="right" title="Preferences">
+        <Button
+          type="primary"
+          size="large"
+          onClick={openThemePrefs}
+          className={className}
+        >
+          <SettingFilled />
+        </Button>
+      </Tooltip>
       <DarkModePreferenceModal
         visible={showPreferenceModal}
         onClose={closeThemePrefs}

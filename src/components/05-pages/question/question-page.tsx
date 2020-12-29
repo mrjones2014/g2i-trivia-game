@@ -9,6 +9,8 @@ import GameStateRecord from "models/game-state";
 import { RouteUtils } from "utilities/route-utils";
 import { Progress } from "antd";
 import "./question-page.scss";
+import { Helmet } from "react-helmet";
+import { BasePageTitle } from "utilities/constants/base-page-title";
 
 interface PathParams {
   questionNum: string;
@@ -66,17 +68,24 @@ export const QuestionPage: React.FC = () => {
   }
 
   return (
-    <div className={baseClassName}>
-      <div className={`${baseClassName}__progress`}>
-        <Progress
-          percent={gameState.progressPercent(questionIndex)}
-          format={() => gameState.formatProgressText(questionIndex)}
-          status="normal"
-        />
+    <React.Fragment>
+      <Helmet>
+        <title>
+          {BasePageTitle} - Question {questionNum}
+        </title>
+      </Helmet>
+      <div className={baseClassName}>
+        <div className={`${baseClassName}__progress`}>
+          <Progress
+            percent={gameState.progressPercent(questionIndex)}
+            format={() => gameState.formatProgressText(questionIndex)}
+            status="normal"
+          />
+        </div>
+        <div className={`${baseClassName}__content`}>
+          <Question question={question} onAnswer={handleAnswer} />
+        </div>
       </div>
-      <div className={`${baseClassName}__content`}>
-        <Question question={question} onAnswer={handleAnswer} />
-      </div>
-    </div>
+    </React.Fragment>
   );
 };

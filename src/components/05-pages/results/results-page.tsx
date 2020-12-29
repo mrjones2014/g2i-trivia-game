@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import GameStateRecord from "models/game-state";
 import { sitemap } from "sitemap";
 import "./results-page.scss";
+import { Helmet } from "react-helmet";
+import { BasePageTitle } from "utilities/constants/base-page-title";
 
 const { Title } = Typography;
 
@@ -35,22 +37,27 @@ export const ResultsPage: React.FC = () => {
   }
 
   return (
-    <div className={baseClassName}>
-      <Title>
-        You Scored
-        <p>{gameState.scoreString()}</p>
-      </Title>
-      <Card className={`${baseClassName}__results-summary`}>
-        <QuestionResultList questions={gameState.questions} />
-      </Card>
-      <Button
-        type="primary"
-        onClick={resetGame}
-        size="large"
-        className={`${baseClassName}__restart-button`}
-      >
-        Play Again?
-      </Button>
-    </div>
+    <React.Fragment>
+      <Helmet>
+        <title>{BasePageTitle} - Results</title>
+      </Helmet>
+      <div className={baseClassName}>
+        <Title>
+          You Scored
+          <p>{gameState.scoreString()}</p>
+        </Title>
+        <Card className={`${baseClassName}__results-summary`}>
+          <QuestionResultList questions={gameState.questions} />
+        </Card>
+        <Button
+          type="primary"
+          onClick={resetGame}
+          size="large"
+          className={`${baseClassName}__restart-button`}
+        >
+          Play Again?
+        </Button>
+      </div>
+    </React.Fragment>
   );
 };

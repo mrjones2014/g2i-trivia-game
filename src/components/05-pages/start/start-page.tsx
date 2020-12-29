@@ -3,8 +3,10 @@ import useGameStateContext from "hooks/context/use-game-state-context";
 import useQuestions from "hooks/domain/questions/use-questions";
 import GameStateRecord from "models/game-state";
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { Redirect } from "react-router-dom";
 import { sitemap } from "sitemap";
+import { BasePageTitle } from "utilities/constants/base-page-title";
 import { RouteUtils } from "utilities/route-utils";
 import "./start-page.scss";
 
@@ -24,9 +26,14 @@ export const StartPage: React.FC = () => {
 
   if (loading || gameState.questions.size === 0) {
     return (
-      <div className={baseClassName}>
-        <Spin tip="Loading questions..." />
-      </div>
+      <React.Fragment>
+        <Helmet>
+          <title>{BasePageTitle} - Loading Questions...</title>
+        </Helmet>
+        <div className={baseClassName}>
+          <Spin tip="Loading questions..." />
+        </div>
+      </React.Fragment>
     );
   }
 
