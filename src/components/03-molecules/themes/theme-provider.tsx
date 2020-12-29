@@ -1,30 +1,25 @@
 import useOsDarkMode from "hooks/utilities/use-os-dark-mode";
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import { useCookies } from "react-cookie";
+import { Helmet } from "react-helmet";
 import { CookieKeys } from "utilities/constants/cookies";
 import { DarkModePref } from "utilities/types/enums/dark-mode-pref";
 
-const LightTheme = React.lazy(() => import("./light-theme"));
-const DarkTheme = React.lazy(() => import("./dark-theme"));
-
-export const ThemeProvider: React.FC<PropsWithChildren<{}>> = (
-  props: PropsWithChildren<{}>
-) => {
-  const { children } = props;
+export const ThemeProvider: React.FC = () => {
   const [cookies] = useCookies([CookieKeys.DARK_MODE]);
   const osDarkMode = useOsDarkMode();
 
+  const styleSheetPath = shouldUseDarkMode(
+    cookies[CookieKeys.DARK_MODE],
+    osDarkMode
+  )
+    ? "/antd.dark.css"
+    : "/antd.css";
+
   return (
-    <React.Fragment>
-      <React.Suspense fallback={<React.Fragment />}>
-        {shouldUseDarkMode(cookies[CookieKeys.DARK_MODE], osDarkMode) ? (
-          <DarkTheme />
-        ) : (
-          <LightTheme />
-        )}
-      </React.Suspense>
-      {children}
-    </React.Fragment>
+    <Helmet>
+      <link rel="stylesheet" href={styleSheetPath} />
+    </Helmet>
   );
 };
 

@@ -6,6 +6,7 @@ import GameStateRecord from "models/game-state";
 import React, { useState } from "react";
 import "./app.scss";
 import { CookiesProvider } from "react-cookie";
+import { DarkModePreferencesButton } from "components/03-molecules/preferences/dark-mode-preferences-button";
 
 const baseClassName = "app-container";
 
@@ -16,12 +17,15 @@ function App() {
 
   return (
     <CookiesProvider>
+      <ThemeProvider />
       <div className={baseClassName}>
         <div className={`${baseClassName}__content`}>
-          <ThemeProvider />
           <GameStateContext.Provider value={[gameState, setGameState]}>
             <AppRouter />
           </GameStateContext.Provider>
+          <DarkModePreferencesButton
+            className={`${baseClassName}__content__prefs-button`}
+          />
         </div>
       </div>
     </CookiesProvider>

@@ -3,7 +3,14 @@ import { Button } from "antd";
 import { DarkModePreferenceModal } from "components/03-molecules/preferences/dark-mode-preference-modal";
 import React, { useState } from "react";
 
-export const DarkModePreferencesButton: React.FC = () => {
+export interface DarkModePreferencesButtonProps {
+  className?: string;
+}
+
+export const DarkModePreferencesButton: React.FC<DarkModePreferencesButtonProps> = (
+  props: DarkModePreferencesButtonProps
+) => {
+  const { className } = props;
   const [showPreferenceModal, setShowPreferenceModal] = useState(false);
 
   const openThemePrefs = () => setShowPreferenceModal(true);
@@ -15,7 +22,7 @@ export const DarkModePreferencesButton: React.FC = () => {
         type="primary"
         size="large"
         onClick={openThemePrefs}
-        className={`theme-button`}
+        className={className}
       >
         <SettingFilled />
       </Button>

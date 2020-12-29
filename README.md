@@ -29,6 +29,12 @@ src/
 
 ## Available Scripts
 
+## `yarn cp-vendor-styles`
+
+Copies the minified [Ant Design](https://ant.design/) stylesheets to the public folder so that we can
+toggle the dark theme via [React Helmet](https://github.com/nfl/react-helmet) by switching the referenced
+stylesheet. This automatically gets run on start and build.
+
 ## `yarn format`
 
 Runs [Prettier](https://github.com/prettier/prettier) on modified files via [pretty-quick](https://github.com/azz/pretty-quick). This is also run automatically by a git pre-commit

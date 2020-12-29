@@ -1,5 +1,4 @@
 import { Typography } from "antd";
-import { DarkModePreferencesButton } from "components/03-molecules/preferences/dark-mode-preferences-button";
 import React from "react";
 import { Link } from "react-router-dom";
 import { sitemap } from "sitemap";
@@ -26,7 +25,6 @@ export const HomePage: React.FC = () => {
       >
         Begin
       </Link>
-      <DarkModePreferencesButton />
     </div>
   );
 };
