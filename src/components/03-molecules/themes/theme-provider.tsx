@@ -3,6 +3,7 @@ import React from "react";
 import { useCookies } from "react-cookie";
 import { Helmet } from "react-helmet";
 import { CookieKeys } from "utilities/constants/cookies";
+import { ThemeStylesheetUrls } from "utilities/constants/theme-stylesheet-urls";
 import { DarkModePref } from "utilities/types/enums/dark-mode-pref";
 
 export const ThemeProvider: React.FC = () => {
@@ -13,8 +14,8 @@ export const ThemeProvider: React.FC = () => {
     cookies[CookieKeys.DARK_MODE],
     osDarkMode
   )
-    ? "/antd.dark.css"
-    : "/antd.css";
+    ? ThemeStylesheetUrls.darkTheme
+    : ThemeStylesheetUrls.lightTheme;
 
   return (
     <Helmet>

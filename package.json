@@ -37,9 +37,8 @@
     "typescript": "4.0.3"
   },
   "scripts": {
-    "cp-vendor-styles": "cp node_modules/antd/dist/antd.min.css public/antd.css && cp node_modules/antd/dist/antd.dark.min.css public/antd.dark.css",
-    "start": "yarn cp-vendor-styles && react-scripts start",
-    "build": "yarn cp-vendor-styles && react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postinstall": "husky install",

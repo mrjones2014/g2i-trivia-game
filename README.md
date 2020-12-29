@@ -24,16 +24,11 @@ src/
 │   ├── questions/  <-- services go in a folder named after the domain object
 │   └── service-factory.ts
 └── utilities/
+    └── constants/
     └── types/
 ```
 
 ## Available Scripts
-
-## `yarn cp-vendor-styles`
-
-Copies the minified [Ant Design](https://ant.design/) stylesheets to the public folder so that we can
-toggle the dark theme via [React Helmet](https://github.com/nfl/react-helmet) by switching the referenced
-stylesheet. This automatically gets run on start and build.
 
 ## `yarn format`
 
